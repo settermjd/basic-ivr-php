@@ -1,0 +1,30 @@
+{
+    "name": "settermjd/basic-ivr-php",
+    "description": "This app shows how to build a basic IVR (Interactive voice response) system with PHP and Twilio.",
+    "version": "0.0.1",
+    "type": "project",
+    "license": "MIT",
+    "keywords": [
+        "Slim",
+        "Twilio",
+        "IVR",
+        "Webhooks"
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "slim/slim": "^4.14",
+        "slim/psr7": "^1.7",
+        "twilio/sdk": "^8.2",
+        "monolog/monolog": "^3.7",
+        "php-di/slim-bridge": "^3.4",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "scripts": {
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "php -S 0.0.0.0:8080 -t public/"
+        ]
+    }
+}
