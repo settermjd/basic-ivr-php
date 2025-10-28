@@ -1,6 +1,6 @@
 # Basic IVR system with PHP
 
-This app shows you how to build a basic interactive voice response (IVR) system using PHP and Twilio.
+This app shows you how to build a basic interactive voice response (IVR) system with PHP and Twilio.
 
 ## IVR overview
 
@@ -18,9 +18,9 @@ This sample app provides the following functionality:
 To run the app locally, you need the following:
 
 - PHP 8.3 or later
-- [Composer](https://getcomposer.org)
-- An [ngrok](https://ngrok.com/) account
-- A [Twilio account](https://www.twilio.com/try-twilio) with an active phone number that can send SMS
+- [Composer][composer]
+- An [ngrok][ngrok] account
+- A [Twilio account][twilio-signup] with an active phone number that can send SMS
 
 ## Quickstart
 
@@ -30,7 +30,7 @@ To run the app locally, you need the following:
     composer install
     ```
 3. Rename the `.env.example` file to `.env`
-4. Go to the [Twilio Console](https://console.twilio.com/) and find your **Account SID**, **Auth Token**, and Twilio phone number.
+4. Go to the [Twilio Console][twilio-console] and find your **Account SID**, **Auth Token**, and Twilio phone number.
 5. Copy and paste those values into the placeholders in the `.env` file. Save the file.
 6. Start the app:
     ```bash
@@ -40,7 +40,7 @@ To run the app locally, you need the following:
     ```bash
     ngrok http 8080
     ```
-8. Go to the [Active numbers](https://www.twilio.com/console/phone-numbers/incoming) page in the Twilio Console.
+8. Go to the [Active numbers][active-numbers] page in the Twilio Console.
 9. Click your Twilio phone number.
 10. Go to the **Configure** tab and find the **Voice Configuration** section.
 11. In the **A call comes in** row, select the **Webhook** option.
@@ -55,3 +55,9 @@ This project uses PHPUnit for testing. To run tests:
 ```bash
 composer test
 ```
+
+[composer]: https://getcomposer.org
+[ngrok]: https://ngrok.com/
+[twilio-signup]: https://www.twilio.com/try-twilio
+[twilio-console]: https://console.twilio.com/
+[active-numbers]: https://www.twilio.com/console/phone-numbers/incoming
