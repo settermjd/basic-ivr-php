@@ -7,8 +7,6 @@ namespace Tests\Unit;
 use App\Application;
 use DI\Container;
 use PHPUnit\Framework\TestCase;
-use Slim\Http\Factory\DecoratedServerRequestFactory;
-use Slim\Http\Factory\DecoratedResponseFactory;
 use Slim\Psr7\Factory\ServerRequestFactory;
 use Slim\Psr7\Factory\ResponseFactory;
 use Twilio\Rest\Client;
