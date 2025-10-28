@@ -1,6 +1,6 @@
 # Basic IVR system with PHP
 
-This app shows you how to build a basic interactive voice response (IVR) system with PHP and Twilio.
+This app shows you how to build a basic [interactive voice response (IVR) system][twilio-ivr-url] with PHP and Twilio.
 
 ## IVR overview
 
@@ -61,3 +61,4 @@ composer test
 [twilio-signup]: https://www.twilio.com/try-twilio
 [twilio-console]: https://console.twilio.com/
 [active-numbers]: https://www.twilio.com/console/phone-numbers/incoming
+[twilio-ivr-url]: https://www.twilio.com/en-us/use-cases/ivr
