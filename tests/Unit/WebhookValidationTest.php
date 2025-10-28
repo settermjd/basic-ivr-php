@@ -14,6 +14,7 @@ class WebhookValidationTest extends TestCase
 {
     private RequestValidator $validator;
     private string $authToken;
+    private const TEST_URL = 'https://example.com/webhook';
 
     protected function setUp(): void
     {
@@ -24,7 +25,7 @@ class WebhookValidationTest extends TestCase
 
     public function testValidSignatureIsAccepted(): void
     {
-        $url = 'https://example.com/webhook';
+        $url = self::TEST_URL;
         $postData = [
             'CallSid' => 'CA1234567890abcdef',
             'From' => '+14155551234',
@@ -37,7 +38,7 @@ class WebhookValidationTest extends TestCase
 
     public function testInvalidSignatureIsRejected(): void
     {
-        $url = 'https://example.com/webhook';
+        $url = self::TEST_URL;
         $postData = [
             'CallSid' => 'CA1234567890abcdef',
             'From' => '+14155551234',
@@ -51,7 +52,7 @@ class WebhookValidationTest extends TestCase
 
     public function testTamperedDataIsRejected(): void
     {
-        $url = 'https://example.com/webhook';
+        $url = self::TEST_URL;
         $originalData = [
             'CallSid' => 'CA1234567890abcdef',
             'From' => '+14155551234',
@@ -67,7 +68,7 @@ class WebhookValidationTest extends TestCase
 
     public function testDifferentUrlIsRejected(): void
     {
-        $originalUrl = 'https://example.com/webhook';
+        $originalUrl = self::TEST_URL;
         $postData = [
             'CallSid' => 'CA1234567890abcdef',
             'From' => '+14155551234',
