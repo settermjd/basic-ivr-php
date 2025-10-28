@@ -6,7 +6,7 @@ namespace Tests\Integration;
 
 use App\Application;
 use DI\Container;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 use Slim\Psr7\Factory\ServerRequestFactory;
 use Twilio\Rest\Client;
 
@@ -20,12 +20,6 @@ class WebhookIntegrationTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
-        // Set up test environment variables
-        $_ENV['TWILIO_ACCOUNT_SID'] = 'ACtest123456789abcdef123456789abcdef';
-        $_ENV['TWILIO_AUTH_TOKEN'] = 'test_auth_token_123456789abcdef';
-        $_ENV['TWILIO_PHONE_NUMBER'] = '+15551234567';
-        $_ENV['SKIP_WEBHOOK_VALIDATION'] = 'true';
 
         // Mock Twilio client for integration tests
         $container = new Container();
@@ -44,7 +38,7 @@ class WebhookIntegrationTest extends TestCase
             ->withParsedBody([
                 'CallSid' => 'CA1234567890abcdef',
                 'From' => '+14155551234',
-                'To' => '+15551234567'
+                'To' => $_ENV['TWILIO_PHONE_NUMBER']
             ]);
 
         $response = $slimApp->handle($request);
@@ -69,7 +63,7 @@ class WebhookIntegrationTest extends TestCase
             ->withParsedBody([
                 'CallSid' => 'CA1234567890abcdef',
                 'From' => '+14155551234',
-                'To' => '+15551234567',
+                'To' => $_ENV['TWILIO_PHONE_NUMBER'],
                 'Digits' => '9'
             ]);
 

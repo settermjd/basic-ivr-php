@@ -29,7 +29,7 @@ class WebhookValidationTest extends TestCase
         $postData = [
             'CallSid' => 'CA1234567890abcdef',
             'From' => '+14155551234',
-            'To' => '+15551234567'
+            'To' => $_ENV['TWILIO_PHONE_NUMBER']
         ];
         $signature = $this->validator->computeSignature($url, $postData);
         $isValid = $this->validator->validate($signature, $url, $postData);
@@ -42,7 +42,7 @@ class WebhookValidationTest extends TestCase
         $postData = [
             'CallSid' => 'CA1234567890abcdef',
             'From' => '+14155551234',
-            'To' => '+15551234567'
+            'To' => $_ENV['TWILIO_PHONE_NUMBER']
         ];
 
         $invalidSignature = 'invalid_signature_123';
@@ -56,7 +56,7 @@ class WebhookValidationTest extends TestCase
         $originalData = [
             'CallSid' => 'CA1234567890abcdef',
             'From' => '+14155551234',
-            'To' => '+15551234567'
+            'To' => $_ENV['TWILIO_PHONE_NUMBER']
         ];
 
         $signature = $this->validator->computeSignature($url, $originalData);
@@ -72,7 +72,7 @@ class WebhookValidationTest extends TestCase
         $postData = [
             'CallSid' => 'CA1234567890abcdef',
             'From' => '+14155551234',
-            'To' => '+15551234567'
+            'To' => $_ENV['TWILIO_PHONE_NUMBER']
         ];
         $signature = $this->validator->computeSignature($originalUrl, $postData);
         $differentUrl = 'https://example.org/webhook';

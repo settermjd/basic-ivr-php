@@ -6,7 +6,7 @@ namespace Tests\Unit;
 
 use App\Application;
 use DI\Container;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 use Slim\Psr7\Factory\ServerRequestFactory;
 use Slim\Psr7\Factory\ResponseFactory;
 use Twilio\Rest\Client;
@@ -22,12 +22,6 @@ class ApplicationTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
-        // Set up test environment variables
-        $_ENV['TWILIO_ACCOUNT_SID'] = 'ACtest123456789abcdef123456789abcdef';
-        $_ENV['TWILIO_AUTH_TOKEN'] = 'test_auth_token_123456789abcdef';
-        $_ENV['TWILIO_PHONE_NUMBER'] = '+15551234567';
-        $_ENV['SKIP_WEBHOOK_VALIDATION'] = 'true';
 
         $this->container = new Container();
 
@@ -63,7 +57,7 @@ class ApplicationTest extends TestCase
     public function testHandleGatherInputWithValidDigit3(): void
     {
         $request = (new ServerRequestFactory())->createServerRequest('POST', '/gather')
-            ->withParsedBody(['Digits' => '3', 'From' => '+15551234567']);
+            ->withParsedBody(['Digits' => '3', 'From' => $_ENV['TWILIO_PHONE_NUMBER']]);
         $response = (new ResponseFactory())->createResponse();
 
         $result = $this->app->handleGatherInput($request, $response);
@@ -76,7 +70,7 @@ class ApplicationTest extends TestCase
     public function testHandleGatherInputWithInvalidDigit(): void
     {
         $request = (new ServerRequestFactory())->createServerRequest('POST', '/gather')
-            ->withParsedBody(['Digits' => '9', 'From' => '+15551234567']);
+            ->withParsedBody(['Digits' => '9', 'From' => $_ENV['TWILIO_PHONE_NUMBER']]);
         $response = (new ResponseFactory())->createResponse();
 
         $result = $this->app->handleGatherInput($request, $response);
