@@ -2,32 +2,67 @@
 
 This app shows how to build a basic [phone menu (<abbr>IVR</abbr> Interactive Voice Response)][twilio_ivr_url] system with PHP and Twilio.
 
-## Overview
+## IVR overview
 
-- A user calls their Twilio phone number
-- The user is then presented with three options:
-  1. Talk to sales
-  2. Hear the company's hours of operation;
-  3. Hear the company's address
-- If the user chooses one of the first two options, they hear a voice response providing more information
-- If they choose the third option, they will receive an SMS with the company's address
+This sample app provides the following functionality:
 
-## Prerequisites/Requirements
+1. A customer calls your Twilio phone number
+2. Your app answers the call using text-to-speech and asks the caller to choose from one of three options:
+    1. Talk to sales 
+    2. Get the company's hours of operation
+    3. Get the company's address
+3. The caller dials an option. Your app tells them the information that they requested or it sends an SMS to the caller with the company's address.
 
-To run the code, you will need the following:
+## Prerequisites
 
-- PHP 8.3 or above
-- [Composer][composer_url] installed globally
+To run the app locally, you need the following:
+
+- PHP 8.3 or later
+- [Composer][composer]
 - A network testing tool such as [curl][curl_url], [Resterm][resterm_url], or [Postman][postman_url]
-- [ngrok][ngrok_url] and a free ngrok account
-- A Twilio account (free or paid) with an active phone number that can send SMS.
-  If you are new to Twilio, [create a free account][try_twilio_url].
+- An [ngrok][ngrok] account
+- A [Twilio account][twilio-signup] with an active phone number that can send SMS
 
-[composer_url]: https://getcomposer.org
+## Quickstart
+
+1. Clone or download this repository.
+2. Install the dependencies:
+    ```bash
+    composer install
+    ```
+3. Rename the `.env.example` file to `.env`
+4. Go to the [Twilio Console][twilio-console] and find your **Account SID**, **Auth Token**, and Twilio phone number.
+5. Copy and paste those values into the placeholders in the `.env` file. Save the file.
+6. Start the app:
+    ```bash
+    composer run-script serve
+    ```
+7. Start your ngrok server:
+    ```bash
+    ngrok http 8080
+    ```
+8. Go to the [Active numbers][active-numbers] page in the Twilio Console.
+9. Click your Twilio phone number.
+10. Go to the **Configure** tab and find the **Voice Configuration** section.
+11. In the **A call comes in** row, select the **Webhook** option.
+12. Paste your ngrok public URL in the **URL** field. For example, if your ngrok console shows Forwarding `https://1aaa-123-45-678-910.ngrok-free.app`, enter `https://1aaa-123-45-678-910.ngrok-free.app`.
+13. Click **Save configuration**.
+14. With the PHP server and ngrok running, call your Twilio phone number. You hear the IVR greeting defined in `public/index.php`.
+
+## Testing
+
+This project uses PHPUnit for testing. To run tests:
+
+```bash
+composer test
+```
+
+[composer]: https://getcomposer.org
 [curl_url]: https://curl.se/
-[ngrok_url]: https://ngrok.com/
+[ngrok]: https://ngrok.com/
 [postman_url]: https://www.postman.com/
 [resterm_url]: https://github.com/unkn0wn-root/resterm
-[try_twilio_url]: https://www.twilio.com/try-twilio
-[twilio_ivr_url]: https://www.twilio.com/en-us/use-cases/ivr
-
+[twilio-signup]: https://www.twilio.com/try-twilio
+[twilio-console]: https://console.twilio.com/
+[active-numbers]: https://www.twilio.com/console/phone-numbers/incoming
+[twilio-ivr-url]: https://www.twilio.com/en-us/use-cases/ivr
